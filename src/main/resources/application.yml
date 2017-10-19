@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: ha.dsp2.out
+          group: entityB
+          binder: rabbit1
+        output:
+          destination: ha.sink.out
+          binder: rabbit1
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                username: guest         #cm_admin
+                password: guest         #Cadre0n2017
+                addresses: localhost    #52.27.223.51:5672,52.26.98.37:5672,34.214.157.143:5672
+server:
+  port: ${PORT:8082}
